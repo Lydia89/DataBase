@@ -34,12 +34,12 @@ CREATE TABLE Favorites (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     class VARCHAR(30),
     sport VARCHAR(30),
-   Students_id INT references Students(id)
+   students_id INT references students(id)
   
 );
 /*clé étrangere*/
 ALTER TABLE Favorites
-   ADD FOREIGN KEY (Students_id) REFERENCES Students(id)
+   ADD FOREIGN KEY (students_id) REFERENCES students(id)
    
 INSERT INTO `Favorites`(`id`, `class`, `sport`, `Students_id`) 
 VALUES 
@@ -146,13 +146,26 @@ SELECT Students.name COUNT(Languages.name) FROM Languages LEFT JOIN Studentslang
 /*Bonus*/
 SELECT name FROM `Students` WHERE name LIKE '%e%'
 /*  Véronique Steeven Sophie  */
-SELECT sport FROM Students LEFT JOIN Favorites ON Students.id = Favorites.Students_id where name LIKE '%e%'
-/*Boxing Cricket Hip-hop*/
+SELECT Students.name,Favorites.sport FROM `Students` LEFT JOIN Favorites ON Favorites.Students_id = Students.id WHERE name LIKE '%e%'
+/*Véronique Boxing
+Steeven Cricket
+Sophie Hip-hop
+*/
 
 
-SELECT class FROM Students LEFT JOIN Favorites ON Students.id = Favorites.Students_id where city LIKE '%i%'
-/*class :
-Arts
-Literature
-Computer science
-Music*/
+SELECT Students.city,Favorites.class FROM `Students` LEFT JOIN Favorites ON Favorites.Students_id = Students.id WHERE city LIKE '%i%'
+/* name class :
+Paris Arts
+Marseille Literature
+Paris Computer science
+Paris Music*/
+
+
+
+
+
+
+
+
+
+ 
